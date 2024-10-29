@@ -15,3 +15,15 @@ BOOKS = [
 @app.get("/books")
 async def read_all_books():
     return BOOKS
+
+# # Orders matters static uls places ahead of dynamic param
+# @app.get("/books/my_book")
+# async def read_all_books():
+#     return  {'book_title': 'My favourite book!'}
+
+# Dynamic path parameters
+@app.get("/books/{book_title}")
+async def read_book(book_title: str):
+    for book in BOOKS:
+        if book.get('title').casefold() == book_title.casefold():
+            return book
