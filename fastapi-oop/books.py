@@ -23,11 +23,23 @@ class Book:
 # Request model for use in post request
 class BookRequest(BaseModel):
     # None required for pydantiv v2
-    id: Optional[int] = None
+    id: Optional[int] = Field(description='ID is not needed on create', default=None)
     title: str = Field(min_length=3)
     author: str = Field(min_length=1)
     description:str = Field(min_length=1, max_length=100)
     rating: int = Field(gt=0, lt=6)
+
+    # Model config for readability in swagger
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "title": "A new book",
+                "author": "thefreelancer",
+                "description": "Anew description of a book",
+                "rating": 5
+            }
+        }
+    }
 
 
 BOOKS = [
