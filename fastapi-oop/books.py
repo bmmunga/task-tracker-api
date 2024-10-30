@@ -29,13 +29,13 @@ class BookRequest(BaseModel):
     description:str = Field(min_length=1, max_length=100)
     rating: int = Field(gt=0, lt=6)
 
-    # Model config for readability in swagger
+    # Model config to set up more descriptive request within swagger docs
     model_config = {
         "json_schema_extra": {
             "example": {
                 "title": "A new book",
                 "author": "thefreelancer",
-                "description": "Anew description of a book",
+                "description": "A new description of a book",
                 "rating": 5
             }
         }
