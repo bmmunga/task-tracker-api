@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Body, Path, Query, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
+from starlette import status
 
 app = FastAPI()
 
@@ -57,20 +58,20 @@ BOOKS = [
 ]
 
 
-@app.get("/books")
+@app.get("/books", status_code=status.HTTP_200_OK)
 async def read_all_books():
     return BOOKS
 
 
-@app.get("/books/{book_id}")
+@app.get("/books/{book_id}", status_code=status.HTTP_200_OK)
 async def read_book(book_id: int = Path(gt=0)):
     for book in BOOKS:
         if book.id == book_id:
             return book
-        raise HTTPException(status_code=404, detail='Item Not Found')
+    raise HTTPException(status_code=404, detail='Item Not Found')
 
 
-@app.get("/books/")
+@app.get("/books/", status_code=status.HTTP_200_OK)
 async def read_book_by_rating(book_rating: int = Query(gt=0, lt=6)):
     books_to_return = []
     for book in BOOKS:
@@ -79,7 +80,7 @@ async def read_book_by_rating(book_rating: int = Query(gt=0, lt=6)):
     return books_to_return
 
 
-@app.get("/books/publish/")
+@app.get("/books/publish/", status_code=status.HTTP_200_OK)
 async def read_books_by_publish_date(published_date: int = Query(gt=1999, lt=2031)):
     books_to_return = []
     for book in BOOKS:
@@ -88,7 +89,7 @@ async def read_books_by_publish_date(published_date: int = Query(gt=1999, lt=203
     return books_to_return
 
 
-@app.post("/create-book")
+@app.post("/create-book", status_code=status.HTTP_201_CREATED)
 # Body does not allow us to do any form of validation
 # So we use pydantic in python
 async def create_book(book_request: BookRequest):
@@ -97,14 +98,14 @@ async def create_book(book_request: BookRequest):
 
 
 def find_book_id(book: Book):
-    if book.id > 0:
+    if len(BOOKS) > 0:
         book.id = BOOKS[-1].id + 1
     else:
         book.id = 1
     return book
 
 
-@app.put("/books/update_book")
+@app.put("/books/update_book", status_code=status.HTTP_204_NO_CONTENT)
 async def update_book(book: BookRequest):
     book_changed = False
     for i in range(len(BOOKS)):
@@ -115,7 +116,7 @@ async def update_book(book: BookRequest):
         raise HTTPException(status_code=404, detail='Items Not Found')
 
 
-@app.delete("/books/{book_id}")
+@app.delete("/books/{book_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_book(book_id: int = Path(gt=0)):
     # Validation for path parameters
     book_changed = False
