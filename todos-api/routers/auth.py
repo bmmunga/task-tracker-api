@@ -7,8 +7,8 @@ from pydantic import BaseModel
 from starlette import status
 from sqlalchemy.orm import Session
 from typing import Annotated
-from database import SessionLocal
-from models import Users
+from ..database import SessionLocal
+from ..models import Users
 
 
 router = APIRouter(
