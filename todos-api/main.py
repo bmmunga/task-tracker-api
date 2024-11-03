@@ -5,7 +5,7 @@ from .routers import auth, todos, admin, users
 
 app = FastAPI()
 
-models.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 # health check
 @app.get("/healthy")
