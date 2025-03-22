@@ -8,7 +8,24 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = FastAPI()
+app = FastAPI(
+     title="Task Tracker API",
+    description="""
+    A RESTful API for tracking tasks.
+    
+    ## Features
+    
+    * User authentication and authorization
+    * Task creation, updates, and deletion
+    * Administrative controls
+    * User management
+    
+    ## Authentication
+    
+    Most endpoints require authentication via JWT token.
+    """,
+    version="1.0.0"
+)
 
 Base.metadata.create_all(bind=engine)
 
