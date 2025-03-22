@@ -1,8 +1,5 @@
 # Task Tracker API
 
-![image](https://github.com/user-attachments/assets/08f3c165-deff-4ed2-b790-973471658962)
-![image](https://github.com/user-attachments/assets/8e707bde-c481-47cf-8906-43c5b6a5a91a)
-
 ## Overview
 
 This API provides endpoints to manage to-do items, including creating, reading, updating, and deleting tasks. It also supports user authentication and authorization with different user roles (such as "admin") to control access to certain endpoints.
@@ -50,8 +47,8 @@ This API provides endpoints to manage to-do items, including creating, reading, 
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/MungaSoftwiz/task-tracker-api.git
-   cd todos-api
+   git clone https://github.com/bmmunga/task-tracker-api.git
+   cd todos_api
    ```
 
 2. **Install dependencies**:
@@ -70,8 +67,7 @@ This API provides endpoints to manage to-do items, including creating, reading, 
 
 5. **Run the Application**:
    ```bash
-   cd ../
-   uvicorn todos-app.main:app --reload
+   uvicorn main:app --reload
    ```
 
 ## API Endpoints
@@ -152,4 +148,4 @@ This API uses JWT tokens for authentication, with role-based access control for 
 
 ## AUTHORS
 
-Boniface Munga [GitHub](https://github.com/MungaSoftwiz) | [X](https://X.com/MungaSoftwiz)
+Boniface Munga [LinkedIn](https://www.linkedin.com/in/bmunga-software-engineer/)
