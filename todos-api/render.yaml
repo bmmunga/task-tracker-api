@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: task-tracker-api
-    env: python
-    buildCommand: ""
-    startCommand: uvicorn todos-api.main:app --reload
