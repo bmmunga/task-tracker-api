@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from typing import Annotated
 from ..database import SessionLocal
 from ..models import Users
+import os
 
 
 router = APIRouter(
@@ -16,7 +17,7 @@ router = APIRouter(
     tags=['auth']
 )
 
-SECRET_KEY = '2d548e101580e851e2c21c1828ca8ddd99385267c743cb30e4bfd787db8ceb8a'
+SECRET_KEY = os.getenv('SECRET_KEY')
 ALGORITHM = 'HS256'
 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
